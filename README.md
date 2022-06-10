@@ -1,4 +1,4 @@
-# java-lib
+# baishi-common
 Java通用代码仓库
 
 ## 目标

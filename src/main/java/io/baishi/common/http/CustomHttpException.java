@@ -1,4 +1,4 @@
-package com.nick.common.exception;
+package io.baishi.common.http;
 
 /**
  * 自定义HTTP访问异常

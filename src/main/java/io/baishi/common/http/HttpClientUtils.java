@@ -1,6 +1,5 @@
-package com.nick.common.http;
+package io.baishi.common.http;
 
-import com.nick.common.exception.CustomHttpException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
@@ -19,11 +18,11 @@ import java.io.IOException;
  * @author nick
  * @date 2018/2/24
  */
-public class HttpClient {
+public class HttpClientUtils {
 
     private static final int HTTP_STATUS_CODE_SUCCESS = 200;
 
-    private static CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
+    private static final CloseableHttpClient CLOSEABLE_HTTP_CLIENT = HttpClients.createDefault();
 
     private static final int CONNECTION_REQUEST_TIMEOUT = 1000;
     private static final int SOCKET_TIMEOUT = 1000;
@@ -121,7 +120,7 @@ public class HttpClient {
                 .setConnectTimeout(connectTimeout)
                 .build();
         httpPost.setConfig(requestConfig);
-        try (CloseableHttpResponse httpResponse = closeableHttpClient.execute(httpPost)) {
+        try (CloseableHttpResponse httpResponse = CLOSEABLE_HTTP_CLIENT.execute(httpPost)) {
             if (httpResponse.getStatusLine().getStatusCode() != HTTP_STATUS_CODE_SUCCESS) {
                 throw new CustomHttpException(httpResponse.getStatusLine() + ". url is " + url);
             }
